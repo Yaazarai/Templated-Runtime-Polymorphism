@@ -1,4 +1,4 @@
-# Templated-Runtime-Polymorphism
+# C++ Templated-Runtime-Polymorphism
 Demonstration of how templates can be used for datatype runtime polymorphism.
 
 Here we create a base class `base` and a class to inherent `base` as it's parent called `deriviedT`. `derivedT` however is also templated, so it uses compile time polymorphism via templates. From here we create a function call in the `base` and we create it's equivalent in the `derivedT` and we mark them both as virtual.
