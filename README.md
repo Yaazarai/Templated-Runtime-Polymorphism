@@ -28,3 +28,31 @@ base* = new deriveT<int>();
 base->call();
 ```
 The result here will be the method execution for `deriveT` not `base` because the inheritee virtual method overrides the inherited virtual method.
+
+Sooo... why does this work? Well because templates are compile time they cannot be generated at runtime. So instead we allow the compiler to generate templates for all types that we define in our code, then we simply pick and choose which ones we want to use at runtime. For example if we wanted to pick a type at runtime we could use user input to choose a type from a switch statement.
+```C++
+int main() {
+    base* sample = nullptr;
+
+    std::cout << "CHOOSE TYPE: (BYTE = 1, UINT = 2, DOUBLE = 3)" << std::endl;
+    uint32_t type;
+    std::cin >> type;
+    
+    switch (type) {
+        case 1:
+            sample = static_cast<base*>(new derivedT<uint8_t>());
+        break;
+        case 2:
+            sample = static_cast<base*>(new derivedT<int32_t>());
+        break;
+        case 3:
+            sample = static_cast<base*>(new derivedT<float_t>());
+        break;
+    }
+
+    sample->call(2567.45);
+    system("pause");
+}
+```
+
+NOTE: The only `#includ` used here was `iostream`.
