@@ -6,7 +6,7 @@ Here we create a base class `base` and a class to inherent `base` as it's parent
     class base {
         public:
         virtual double call(double xx) {
-            cout << "DERIVED: " << xx << endl;
+            std::cout << "DERIVED: " << xx << std::endl;
             return xx;
         }
     };
@@ -14,8 +14,8 @@ Here we create a base class `base` and a class to inherent `base` as it's parent
     template<typename T>
     class derivedT : public base {
         public:
-        virtual T call(double xx) {
-            cout << "DERIVED_T: " << ((T) xx) << endl;
+        virtual double call(double xx) {
+            std::cout << "DERIVED_T: " << static_cast<T>(xx) << std::endl;
             return (T) xx;
         }
     };
@@ -36,13 +36,13 @@ For example if we wanted to pick a type at runtime we could use user input to ch
 int main() {
     base* sample = nullptr;
 
-    std::cout << "CHOOSE TYPE: (BYTE = 1, UINT = 2, DOUBLE = 3)" << std::endl;
+    std::cout << "CHOOSE TYPE: (BYTE(BASE) = 1, UINT = 2, DOUBLE = 3)" << std::endl;
     uint32_t type;
     std::cin >> type;
     
     switch (type) {
         case 1:
-            sample = static_cast<base*>(new derivedT<uint8_t>());
+            sample = static_cast<base*>(new base());
         break;
         case 2:
             sample = static_cast<base*>(new derivedT<int32_t>());
