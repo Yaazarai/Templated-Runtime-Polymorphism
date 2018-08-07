@@ -29,7 +29,9 @@ base->call();
 ```
 The result here will be the method execution for `deriveT` not `base` because the inheritee virtual method overrides the inherited virtual method.
 
-Sooo... why does this work? Well because templates are compile time they cannot be generated at runtime. So instead we allow the compiler to generate templates for all types that we define in our code, then we simply pick and choose which ones we want to use at runtime. For example if we wanted to pick a type at runtime we could use user input to choose a type from a switch statement.
+Sooo... why does this work? Well because templates are compile time they cannot be generated at runtime. So instead we allow the compiler to generate templates for all types that we define in our code. We define all instances of `derivedT` as derivative of `base` and then we can access each template without having to specify the type. This is pretty neat, because now you can write code that is not dependant upon types and continue on without worry. For example if you want you could now define a `std::vector` that can support multiple subtypes without rew-writing the whole vector library, simply by define the vector as `std::vector<base>`.
+
+For example if we wanted to pick a type at runtime we could use user input to choose a type from a switch statement.
 ```C++
 int main() {
     base* sample = nullptr;
