@@ -59,4 +59,4 @@ int main() {
 }
 ```
 
-NOTE: The only `#includ` used here was `iostream`.
+NOTE: The only `#include` used here was `iostream`.
